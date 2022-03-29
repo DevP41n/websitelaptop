@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Redirect; //Thư viện trả về kết quả
 session_start();
@@ -14,6 +15,7 @@ use App\Models\Product;
 
 class ContactController extends Controller
 {
+    //admin
     public function add_contact()
 	{
 		return view('admin.add_contact');
@@ -50,7 +52,7 @@ class ContactController extends Controller
     	$contact->contact_phone = $Request->contact_phone;
     	$contact->contact_email = $Request->contact_email;
     	$contact->contact_address = $Request->contact_address;
-    	
+
     	$contact->save();
     	Session::put('message','Cập nhật liên hệ thành công!');
     	return Redirect('all-contact');
@@ -64,14 +66,17 @@ class ContactController extends Controller
         return Redirect('all-contact');
     }
 
+    //client
     public function contact()
     {
         $show_contact = Contact::all();
-        $category = Category_product::where('category_status','1')->orderby('category_id','desc')->get();
+        $category = Category_product::where('category_status','1')->orderby('category_id','asc')->get();
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
         $all_product = Product::where('product_status','1')->orderby('product_id','desc')->get();
 
 
-        return view('pages.contact.contact',compact('category','all_product','show_contact'));
+        return view('pages.contact.contact',
+            compact('category','all_product','show_contact','brand'));
     }
 
 }

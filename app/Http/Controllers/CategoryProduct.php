@@ -39,7 +39,7 @@ class CategoryProduct extends Controller
     }
 
 	public function active_category_product($category_product_id)
-    {	
+    {
     	DB::table('tbl_category_product')->where('category_id',$category_product_id)->update(['category_status'=>0]);
     	Session::put('message','không hiển thị sản phẩm thành công!');
     	return Redirect('all-category-product');
@@ -82,10 +82,13 @@ class CategoryProduct extends Controller
         $category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','1')->orderby('brand_id','desc')->get();
         $category_by_id =DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id',$category_id)->get();
-
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->first();
 
-        return view('pages.category.show_category')->with('category',$category_product)->with('brand_product',$brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
+        return view('pages.category.show_category')
+            ->with('category',$category_product)
+            ->with('brand',$brand_product)
+            ->with('category_by_id',$category_by_id)
+            ->with('category_name',$category_name);
 
 
         // $category_product = Category_product::where('category_status','1')->orderby('category_id','desc')->get();
@@ -96,6 +99,6 @@ class CategoryProduct extends Controller
 
         // return view('pages.category.show_category',compact('category_product','brand_product','category_by_id','category_name'));
     }
-    
+
 }
 

@@ -1,167 +1,140 @@
+
+<head>
+    <title>Chi tiết sản phẩm</title>
+</head>
+
 @extends('layout')
 @section('content')
+    <!-- breadcrumb area start -->
+    @foreach($details_product as $key => $value)
+        <div class="breadcrumb-area-2 box-plr-45">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <nav aria-label="breadcrumb" class="breadcrumb-list-2">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
+                                <li class="breadcrumb-item"><a href="product">Sản phẩm</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{$value->product_name}}
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
 
-@foreach($details_product as $key => $value)
-<div class="product-details"><!--product-details-->
-						<div class="col-sm-5">
-							<div class="view-product">
-								<img src="{{URL('public/uploads/products/'.$value->product_image)}}" alt="" />
-								<h3>ZOOM</h3>
-							</div>
-							<div id="similar-product" class="carousel slide" data-ride="carousel">
-								
-								  <!-- Wrapper for slides -->
-								    <div class="carousel-inner">
-										<div class="item active">
-										  <a href=""><img src="{{URL('public/uploads/products/similar1.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL('public/uploads/products/similar2.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL('public/uploads/products/similar3.jpg')}}" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="{{URL('public/uploads/products/similar1.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL('public/uploads/products/similar2.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL('public/uploads/products/similar3.jpg')}}" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="{{URL('public/uploads/products/similar1.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL('public/uploads/products/similar2.jpg')}}" alt=""></a>
-										  <a href=""><img src="{{URL('public/uploads/products/similar3.jpg')}}" alt=""></a>
-										</div>
-										
-									</div>
+        <!-- product details area start -->
+        <section class="product__details-area pb-45 box-plr-45">
+            <div class="container-fluid">
+                <div class="row">
 
-								  <!-- Controls -->
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
-							</div>
+                    <div class="col-xxl-8 col-xl-7 col-lg-5">
+                        <div class="product__details-grid-thumb">
+                            <div class="row gy-1 gx-1">
+{{--                                có thể xuất nhiều hình tại đây ->foreach--}}
+                                <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-6 col-sm-6">
+                                    <div class="product-thumb-grid w-img">
+                                        <img src="{{URL('public/uploads/products/'.$value->product_image)}}"
+                                             alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-5 col-lg-7">
+                        <div
+                            class="product__details-content product__details-content-2 product-details-sidebar-sticky pl-30">
+                            <h3 class="product__details-title">
+                                <a >{{$value->product_name}}</a>
+                            </h3>
+                            <div class="product__details-price">
+                                <span class="price">{{number_format($value->product_price)}} VNĐ</span>
+                            </div>
+{{--                            <div class="product__details-rating d-flex align-items-center mb-15">--}}
+{{--                                <ul class="mr-10">--}}
+{{--                                    <li><a href="#"><i class="fal fa-star"></i></a></li>--}}
+{{--                                    <li><a href="#"><i class="fal fa-star"></i></a></li>--}}
+{{--                                    <li><a href="#"><i class="fal fa-star"></i></a></li>--}}
+{{--                                    <li><a href="#"><i class="fal fa-star"></i></a></li>--}}
+{{--                                    <li><a href="#"><i class="fal fa-star"></i></a></li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
 
-						</div>
-						<div class="col-sm-7">
-							<div class="product-information"><!--/product-information-->
-								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>{{$value->product_name}}</h2>
-								<p>Thương hiệu: {{$value->brand_name}}</p>
-								<img src="images/product-details/rating.png" alt="" />
-								<span>
-									<span>{{number_format($value->product_price)}} VNĐ</span>
-								</span>
-								<p><b>Danh mục :</b> {{$value->category_name}}</p>
-								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
-							</div><!--/product-information-->
-						</div>
-					</div><!--/product-details-->
+                            <div class="product__details-meta mb-25">
+                                <ul>
+                                    <li>
+                                        <div class="product-availibility">
+                                            <span>Trạng thái: </span>
+                                            <p>
+                                                <span>Còn hàng</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="product-sku">
 
-					<div class="category-tab shop-details-tab"><!--category-tab-->
-						<div class="col-sm-12">
-							<ul class="nav nav-tabs">		
-								<li class="active"><a href="#reviews" data-toggle="tab">Chi tiết sản phẩm</a></li>
-							</ul>
-						</div>
-						
-							
-							
-							
-							<div class="tab-pane fade active in" id="reviews" >
-								<div class="col-sm-12">
-									<p>{!!$value->product_content!!}</p>
-								</div>
-							</div>
-							
-						</div>
-					</div><!--/category-tab-->
-@endforeach
-					<div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">sản phẩm gợi ý</h2>
-						
-						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="{{URL('public/frontend/images/recommend1.jpg')}}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="{{URL('public/frontend/images/recommend1.jpg')}}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="{{URL('public/frontend/images/recommend1.jpg')}}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="{{URL('public/frontend/images/recommend1.jpg')}}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="{{URL('public/frontend/images/recommend1.jpg')}}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="{{URL('public/frontend/images/recommend1.jpg')}}" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
-						</div>
-					</div><!--/recommended_items-->
-@endsection
+                                            <span>Thương hiệu: </span>
+                                            <p>
+                                                <span>{{$value->brand_name}}</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="product-sku">
+                                            <span>Loại:</span>
+                                            <p>
+                                                <span>{{$value->category_name}}</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="product__details-action mb-20">
+                                <form action="#">
+                                    <div class="product__details-quantity d-sm-flex align-items-center">
+                                        <div class="product-quantity mb-20 mr-15">
+                                            <div class="cart-plus-minus"><input type="text" value="1" /></div>
+                                        </div>
+                                        <div class="product-add-cart  product-add-cart-2 mb-20">
+                                            <button class="s-btn s-btn-2 s-btn-big">Thêm vào giỏ</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="product__details-accordion">
+                                <div class="accordion" id="productDetailsAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="productOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#description" aria-expanded="true"
+                                                    aria-controls="description">
+                                                Thông tin
+                                            </button>
+                                        </h2>
+                                        <div id="description" class="accordion-collapse collapse show"
+                                             aria-labelledby="productDetailsAccordion"
+                                             data-bs-parent="#productDetailsAccordion">
+                                            <div class="accordion-body">
+                                                <div class="product-description-wrapper">
+                                                    {!!$value->product_content!!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- product details area end -->
+        <div class="product-line"></div>
+    @endforeach
+    @endsection
+
+

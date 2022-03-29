@@ -7,13 +7,14 @@ use App\Models\Category_product;
 use App\Models\Product;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect; //Thư viện trả về kết quả
 session_start();
 
 class NewsController extends Controller
 {
+    //admin
 	public function add_news()
 	{
 		return view('admin.add_news');
@@ -24,7 +25,7 @@ class NewsController extends Controller
     	$manager_news = view('admin.all_news')->with('all_news',$all_news);
     	return view('admin_layout')->with('admin.all_news',$manager_news);
 	}
-    
+
     public function save_news(Request $Request)
     {
 
@@ -51,13 +52,13 @@ class NewsController extends Controller
     	$data['news_image'] = $Request->news_image;
     	DB::table('tbl_news')->insert($data);
     	Session::put('message','Thêm sản phẩm thành công!');
-    	
+
     	return Redirect('all-news');
     	}
 
     }
     public function active_news($news_id)
-    {	
+    {
     	News::where('news_id',$news_id)->update(['news_status'=>0]);
     	Session::put('message','Không hiển thị tin tức thành công!');
     	return Redirect('all-news');
@@ -83,7 +84,7 @@ class NewsController extends Controller
 		$data['news_title'] = $Request->news_title;
     	$data['news_content'] = $Request->news_content;
     	$data['news_status'] = $Request->news_status;
- 
+
 
     	$get_image = $Request->file('news_image');
     	if($get_image)
@@ -109,13 +110,30 @@ class NewsController extends Controller
         Session::put('message','Xóa tin tức thành công!');
         return Redirect('all-news');
     }
-    public function news()
+
+
+    //client
+    public function news_all()
     {
-        $show_news = News::all();
+        $show_news = News::where('news_status','1')->orderby('news_id','desc')->get();
         $category = Category_product::where('category_status','1')->orderby('category_id','desc')->get();
+        $all_product = Product::where('product_status','1')->orderby('product_id','desc')->get();
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
+
+        return view('pages.news.news_all')
+        ->with('category', $category)
+        ->with('all_product', $all_product)
+        ->with('brand', $brand)
+        ->with('show_news',$show_news);
+    }
+    public function news_detail($news_id)
+    {
+        $show_news = News::where('news_id',$news_id)->get();
+        $category = Category_product::where('category_status','1')->orderby('category_id','asc')->get();
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
         $all_product = Product::where('product_status','1')->orderby('product_id','desc')->get();
 
 
-        return view('pages.news.news',compact('show_news','category','all_product'));
+        return view('pages.news.news',compact('show_news','category','all_product','brand'));
     }
 }

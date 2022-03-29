@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect; //Thư viện trả về kết quả
 session_start();
 
@@ -31,6 +31,7 @@ class AdminController extends Controller
     public function dashboard(Request $request){
     	$admin_email = $request->admin_email;
     	$admin_password = md5($request->admin_password);
+//        $admin_password = $request->admin_password;
 
     	$result = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
 
@@ -40,7 +41,7 @@ class AdminController extends Controller
     		Session::put('admin_name',$result->admin_name);
     		Session::put('admin_id',$result->admin_id);
     		return redirect('/dashboard');
-			
+
     	}
     	else{
     		Session::put('message','Tải khoản hoặc mật khẩu sai, vui lòng nhập lại !');

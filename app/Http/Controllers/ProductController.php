@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect; //Thư viện trả về kết quả
 session_start();
 
@@ -16,15 +16,18 @@ class ProductController extends Controller
 {
     public function add_product()
     {
-    	$cate_product = Category_product::orderby('category_id','desc')->get();
-    	$brand_product = Brand::orderby('brand_id','desc')->get();
+    	$cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get();
+    	$brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get();
     	return view('admin.add_product')->with('cate_product',$cate_product)->with('brand_product',$brand_product);
     }
 
     public function all_product()
     {
-        $all_product = Product::join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')->orderby('tbl_product.product_id')->get();
-        
+        $all_product = DB::table('tbl_product')
+            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+            ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+            ->orderby('tbl_product.product_id','desc')->get();
+
         // $all_product->($cate,'=','category_id')->($bra,'=','brand_id')->orderby('product_id')->get();
         //  $manager_product = view('admin.all_product')->with('all_product',$all_product);
 
@@ -32,7 +35,7 @@ class ProductController extends Controller
     	//  ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
     	// ->orderby('tbl_product.product_id')->get();
     	//  $manager_product = view('admin.all_product')->with('all_product',$all_product);
-    	
+
         return view('admin.all_product',compact('all_product'));
         //return view('admin_layout')->with('admin.all_product',$manager_product);
     }
@@ -67,7 +70,7 @@ class ProductController extends Controller
     }
 
 	public function active_product($product_id)
-    {	
+    {
     	DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>0]);
     	Session::put('message','Không hiển thị sản phẩm thành công!');
     	return Redirect('all-product');
@@ -125,15 +128,72 @@ class ProductController extends Controller
         return Redirect('all-product');
     }
 
+    //client
+
     //Chi tiết sản phẩm
     public function details_product($product_id)
     {
         $category = Category_product::where('category_status','1')->orderby('category_id','desc')->get();
-        $brand_product = Brand::where('brand_status','1')->orderby('brand_id','desc')->get();
-        $details_product = Product::join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')->where('tbl_product.product_id',$product_id)->get();
-        
-        
+        $brand = Brand::where('brand_status','1')->orderby('brand_id','desc')->get();
+        $details_product = Product::where('tbl_product.product_id',$product_id)
+            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+            ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+            ->get();
+
+
         // return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product);
-        return view('pages.sanpham.show_details',compact('category','brand_product','details_product'));
+        return view('pages.sanpham.show_details',compact('category','brand','details_product'));
+    }
+    public function productPages_all()
+    {
+        $all_product = DB::table('tbl_product')
+            ->where('product_status','1')
+            ->orderby('tbl_product.product_id','desc')->get();
+
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
+        $category = DB::table('tbl_category_product')->where('category_status','1')->orderBy('category_id','asc')->get();
+        // $all_product->($cate,'=','category_id')->($bra,'=','brand_id')->orderby('product_id')->get();
+        //  $manager_product = view('admin.all_product')->with('all_product',$all_product);
+
+        //    ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        //  ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+        // ->orderby('tbl_product.product_id')->get();
+        //  $manager_product = view('admin.all_product')->with('all_product',$all_product);
+
+        return view('pages.sanpham.product_all',compact('all_product','brand','category'));
+        //return view('admin_layout')->with('admin.all_product',$manager_product);
+    }
+    public function productPages_cate($cate_id)
+    {
+        $all_product = DB::table('tbl_product')
+            ->where('product_status','1')
+            ->where('tbl_product.category_id',$cate_id)
+            ->orderby('tbl_product.product_id','desc')->get();
+        $filter_cate_value = $cate_id;
+        $filter_brand_value = 0;
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
+        $category = DB::table('tbl_category_product')->where('category_status','1')->orderBy('category_id','asc')->get();
+
+        return view('pages.sanpham.product_all',
+            compact('all_product','brand','category','filter_cate_value','filter_brand_value'));
+    }
+    public function productPages_cate_brand($cate_id,$brand_id)
+    {
+        $all_product = DB::table('tbl_product')
+            ->where('product_status','1')
+            ->where('tbl_product.category_id',$cate_id)
+            ->where('tbl_product.brand_id',$brand_id)
+            ->orderby('tbl_product.product_id','desc')->get();
+        $filter_cate_value = $cate_id;
+        $filter_brand_value = $brand_id;
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
+        $category = DB::table('tbl_category_product')->where('category_status','1')->orderBy('category_id','asc')->get();
+
+        return view('pages.sanpham.product_all',
+            compact('all_product',
+                'brand',
+                'category',
+                'filter_cate_value',
+                'filter_brand_value'));
     }
 }
