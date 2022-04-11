@@ -152,7 +152,7 @@
                             <div class="basic-pagination" style="display: flex;
     justify-content: center;">
                                 <nav>
-                                    <ul>
+                                    <ul style="display: flex; justify-content: center">
                                         <li>
                                             <a href="shop.html">
                                                 <i class="far fa-angle-left"></i>
