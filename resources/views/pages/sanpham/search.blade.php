@@ -1,11 +1,8 @@
-<html>
 
 <head>
     <title>Tìm kiếm</title>
 </head>
 
-<body>
-<main>
 @extends('layout')
 
 @section('content')
@@ -129,7 +126,4 @@
         </div>
 
     @endsection
-</main>
-</body>
 
-</html>

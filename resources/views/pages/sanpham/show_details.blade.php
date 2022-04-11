@@ -118,6 +118,7 @@
                                              data-bs-parent="#productDetailsAccordion">
                                             <div class="accordion-body">
                                                 <div class="product-description-wrapper">
+                                                    {!!$value->product_desc!!}
                                                     {!!$value->product_content!!}
                                                 </div>
                                             </div>

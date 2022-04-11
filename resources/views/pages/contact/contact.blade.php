@@ -1,3 +1,9 @@
+
+<head>
+    <title>
+        Liên hệ
+    </title>
+</head>
 @extends('layout')
 @section('content')
 <section>

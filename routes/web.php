@@ -23,8 +23,8 @@ Route::post('/tim-kiem',[HomeController::class,'search']);
 
 //Sản phẩm client
 Route::get('/san-pham',[ProductController::class,'productPages_all']);
-Route::get('/san-pham/{cate_id}',[ProductController::class,'productPages_cate']);
-Route::get('/san-pham/{cate_id}/{brand_id}',[ProductController::class,'productPages_cate_brand']);
+Route::get('/san-pham/{brand_id}',[ProductController::class,'productPages_brand']);
+Route::get('/san-pham/{brand_id}/{cate_id}',[ProductController::class,'productPages_brand_cate']);
 Route::get('/chi-tiet-san-pham/{product_id}',[ProductController::class,'details_product']);
 //Sản phẩm admin
 Route::get('/add-product',[ProductController::class,'add_product']);

@@ -47,7 +47,7 @@
                                 <div class="tab-pane fade  show active" id="tab1">
                                     <div class="row pb-20">
                                         @foreach($show_news as $pro)
-                                            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 box-shadow-12 wow fadeInUp" data-wow-delay=".1s">
+                                            <div style="margin: 5px" class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 box-shadow-12 wow fadeInUp" data-wow-delay=".1s">
                                                 <div class="single-product mb-15 " >
                                                     <div class="product-thumb">
                                                         <a href="{{URL('/chi-tiet-tin-tuc/'.$pro->news_id)}}">

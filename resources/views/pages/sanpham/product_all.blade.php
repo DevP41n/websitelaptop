@@ -1,11 +1,8 @@
-<html>
 
 <head>
     <title>Danh sách sản phẩm</title>
 </head>
 
-<body>
-    <main>
         @extends('layout')
         @section('content')
         <!-- breadcrumb area start -->
@@ -181,7 +178,4 @@
             </div>
 
             @endsection
-    </main>
-</body>
 
-</html>

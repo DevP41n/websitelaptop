@@ -163,26 +163,26 @@ class ProductController extends Controller
         return view('pages.sanpham.product_all',compact('all_product','brand','category'));
         //return view('admin_layout')->with('admin.all_product',$manager_product);
     }
-    public function productPages_cate($cate_id)
+    public function productPages_brand($brand_id)
     {
         $all_product = DB::table('tbl_product')
             ->where('product_status','1')
-            ->where('tbl_product.category_id',$cate_id)
+            ->where('tbl_product.brand_id',$brand_id)
             ->orderby('tbl_product.product_id','desc')->get();
-        $filter_cate_value = $cate_id;
-        $filter_brand_value = 0;
+        $filter_cate_value = 0;
+        $filter_brand_value = $brand_id;
         $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
         $category = DB::table('tbl_category_product')->where('category_status','1')->orderBy('category_id','asc')->get();
 
         return view('pages.sanpham.product_all',
             compact('all_product','brand','category','filter_cate_value','filter_brand_value'));
     }
-    public function productPages_cate_brand($cate_id,$brand_id)
+    public function productPages_brand_cate($brand_id,$cate_id)
     {
         $all_product = DB::table('tbl_product')
             ->where('product_status','1')
-            ->where('tbl_product.category_id',$cate_id)
             ->where('tbl_product.brand_id',$brand_id)
+            ->where('tbl_product.category_id',$cate_id)
             ->orderby('tbl_product.product_id','desc')->get();
         $filter_cate_value = $cate_id;
         $filter_brand_value = $brand_id;

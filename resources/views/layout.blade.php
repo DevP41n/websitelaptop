@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>HuGEAR</title>
-
+    <title>Hyper Camera</title>
+    <link rel="shortcut icon" href="{{asset('resources/client/img/logo/logo-white.ico')}}" type="image/x-icon"/>
     <!-- CSS here -->
     <link rel="stylesheet" href="{{asset('resources/client/css/preloader.css')}}">
     <link rel="stylesheet" href="{{asset('resources/client/css/owl.carousel.min.css ')}}">
@@ -132,7 +132,9 @@ C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z"></path>
                         <div class="header-left">
                             <div class="logo pr-55 d-inline-block">
                                 <a href="{{URL('/trang-chu')}}">
-                                <img src="{{('/websitelaptop/public/frontend/images/hugearlogo.jpg')}}" alt="#"></a>
+                                <img style="height: 50px"
+                                    src="{{('/websitelaptop/public/frontend/images/CameraStore-black-logo.png')}}"
+                                     alt="#"></a>
                             </div>
                         </div>
                     </div>
@@ -144,13 +146,13 @@ C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z"></path>
                                     <li class="static">
                                         <a href="{{URL('/san-pham/')}}">Sản phẩm</a>
                                         <ul class="mega-menu mega-full mega-menu-5-col">
-                                            @foreach($category as $key => $cate)
+                                            @foreach($brand as $key => $brand)
                                             <li class="has-dropdown">
-                                                <a href="{{URL('/san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
+                                                <a href="{{URL('/san-pham/'.$brand->brand_id)}}">{{$brand->brand_name}}</a>
                                                 <ul class="has-dropdown">
-                                                    @foreach($brand as $key => $item)
-                                                    <li><a href="{{URL('/san-pham/'.$cate->category_id.'/'.$item->brand_id)}}">
-                                                            {{$item->brand_name}}</a></li>
+                                                    @foreach($category as $key => $item)
+                                                    <li><a href="{{URL('/san-pham/'.$brand->brand_id.'/'.$item->category_id)}}">
+                                                            {{$item->category_name}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
@@ -166,12 +168,12 @@ C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z"></path>
                     <div class="col-xxl-3 col-xl-2 col-lg-2 col-md-8 col-sm-6 col-8">
                         <div class="header-right-wrapper d-flex align-items-center justify-content-end">
                             <div class="header-right header-right-2 d-flex align-items-center justify-content-end">
-                                <a href="login" class="d-none d-xxl-inline-block">Đăng nhập / Đăng ký</a>
+{{--                                <a href="login" class="d-none d-xxl-inline-block">Đăng nhập / Đăng ký</a>--}}
                                 <div class="header-icon header-icon-2 d-inline-block ml-30">
                                     <a href="javascript:void(0)" class="search-toggle"><i
                                             class="fal fa-search"></i></a>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#cartMiniModal"><i
-                                            class="fal fa-shopping-cart"></i><span>2</span></button>
+                                            class="fal fa-shopping-cart"></i><span></span></button>
                                 </div>
                             </div>
                             <div class="header-bar ml-20 d-lg-none">
@@ -227,31 +229,31 @@ C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z"></path>
                         <ul>
                             {{--item trong gio hang--}}
 
-                            <li class="cartmini__item p-rel d-flex align-items-start">
-                                <div class="cartmini__thumb mr-15">
-                                    <a href="product-details.html">
-                                        <img src="resources/client/img/products/product-1.jpg" alt="">
-                                    </a>
+{{--                            <li class="cartmini__item p-rel d-flex align-items-start">--}}
+{{--                                <div class="cartmini__thumb mr-15">--}}
+{{--                                    <a href="product-details.html">--}}
+{{--                                        <img src="resources/client/img/products/product-1.jpg" alt="">--}}
+{{--                                    </a>--}}
 
-                                </div>
-                                <div class="cartmini__content">
-                                    <h3 class="cartmini__title">
-                                        <a href="product-details.html">Form Armchair Walnut Base</a>
-                                    </h3>
-                                    <span class="cartmini__price">
-                                            <span class="price">1 × $70.00</span>
-                                        </span>
-                                </div>
-                                <a href="#" class="cartmini__remove">
-                                    <i class="fal fa-times"></i>
-                                </a>
-                            </li>
+{{--                                </div>--}}
+{{--                                <div class="cartmini__content">--}}
+{{--                                    <h3 class="cartmini__title">--}}
+{{--                                        <a href="product-details.html">Sản phẩm 1</a>--}}
+{{--                                    </h3>--}}
+{{--                                    <span class="cartmini__price">--}}
+{{--                                            <span class="price">$70.00</span>--}}
+{{--                                        </span>--}}
+{{--                                </div>--}}
+{{--                                <a href="#" class="cartmini__remove">--}}
+{{--                                    <i class="fal fa-times"></i>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
 
                         </ul>
                     </div>
                     <div class="cartmini__total d-flex align-items-center justify-content-between">
                         <h5>Tổng cộng:</h5>
-                        <span>$180.00</span>
+                        <span> VNĐ</span>
                     </div>
                     <div class="cartmini__bottom">
                         <a href="cart" class="s-btn w-100 mb-20">Chi tiết giỏ hàng</a>
@@ -272,7 +274,7 @@ C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z"></path>
                     <div class="offcanvas__top d-flex align-items-center mb-60 justify-content-between">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="resources/client/img/logo/logo-black.png" alt="logo">
+                                <img src="resources/client/img/logo/logo-white.ico" alt="logo">
                             </a>
                         </div>
                         <div class="offcanvas__close">

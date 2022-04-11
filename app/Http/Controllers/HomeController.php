@@ -23,7 +23,6 @@ class HomeController extends Controller
 		$all_product = Product::where('product_status', '1')->orderby('product_id', 'asc')->paginate(6);
         $product_banner_newest = DB::table('tbl_product')
             ->where('product_status', '1' and 'cate')
-            ->where('tbl_product.category_id', '4')
             ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
             ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
             ->orderby('product_id', 'desc')
