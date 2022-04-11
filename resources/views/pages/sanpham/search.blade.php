@@ -41,51 +41,6 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="single-widget mb-50">
-                            <h4 class="widget-title title-price-space">Lọc theo giá</h4>
-                            <form action="#">
-                                <div class="ui-price-slider mb-40">
-                                    <div class="slider-range">
-                                        <div id="slider-range" class="mb-20"></div>
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <p>
-                                                    <label for="amount">Giá:</label>
-                                                    <input type="text" id="amount" readonly>
-                                                </p>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="text-end">
-                                                    <a href="#" class="widget-title">Lọc</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        {{--                            <div class="single-widget pb-50 mb-50">--}}
-                        {{--                                <h4 class="widget-title">Lọc theo mục</h4>--}}
-                        {{--                                <div class="widget-color-list widget-color-box scroll-box-default">--}}
-                        {{--                                    <form action="#">--}}
-                        {{--                                        <div class="single-widget-category">--}}
-                        {{--                                            <input type="checkbox" id="color-item-1" name="cat-item">--}}
-                        {{--                                            <label for="color-item-1" class="color-black-bg">Máy ảnh--}}
-                        {{--                                                <span>(12)</span></label>--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <div class="single-widget-category">--}}
-                        {{--                                            <input type="checkbox" id="color-item-2" name="cat-item">--}}
-                        {{--                                            <label for="color-item-2" class="color-green-bg">Ống--}}
-                        {{--                                                kính<span>(02)</span></label>--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <div class="single-widget-category">--}}
-                        {{--                                            <input type="checkbox" id="color-item-3" name="cat-item">--}}
-                        {{--                                            <label for="color-item-3" class="color-blue-bg">Đèn--}}
-                        {{--                                                flash<span>(06)</span></label>--}}
-                        {{--                                        </div>--}}
-                        {{--                                    </form>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
                     </div>
                 </div>
                 <div class="col-xxl-9 col-xl-9 col-lg-8 order-first order-lg-last">
@@ -100,8 +55,6 @@
                                     <div class="select-default">
                                         <select name="short" id="short" class="shorting-select">
                                             <option value="">Mới nhất</option>
-                                            <option value="">Giá tăng dần</option>
-                                            <option value="">Giá giảm dần</option>
                                         </select>
                                     </div>
                                 </div>
