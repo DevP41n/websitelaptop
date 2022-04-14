@@ -16,6 +16,10 @@ class ProductController extends Controller
 {
     public function add_product()
     {
+        $admin_id = Session::get('admin_id');
+        if($admin_id == null)
+            return Redirect::to('/admin');
+
     	$cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get();
     	$brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get();
     	return view('admin.add_product')->with('cate_product',$cate_product)->with('brand_product',$brand_product);
@@ -139,6 +143,7 @@ class ProductController extends Controller
             ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
             ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
             ->get();
+
 
 
         // return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product);
