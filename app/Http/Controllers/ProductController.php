@@ -201,4 +201,38 @@ class ProductController extends Controller
                 'filter_cate_value',
                 'filter_brand_value'));
     }
+    public function cart()
+    {
+//        $all_product = DB::table('tbl_product')
+//            ->where('product_status','1')
+//            ->where('tbl_product.brand_id',$brand_id)
+//            ->where('tbl_product.category_id',$cate_id)
+//            ->orderby('tbl_product.product_id','desc')->paginate(8);
+//        $filter_cate_value = $cate_id;
+//        $filter_brand_value = $brand_id;
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
+        $category = DB::table('tbl_category_product')->where('category_status','1')->orderBy('category_id','asc')->get();
+
+        return view('pages.sanpham.cart',
+            compact(
+                'brand',
+                'category'));
+    }
+    public function checkout()
+    {
+//        $all_product = DB::table('tbl_product')
+//            ->where('product_status','1')
+//            ->where('tbl_product.brand_id',$brand_id)
+//            ->where('tbl_product.category_id',$cate_id)
+//            ->orderby('tbl_product.product_id','desc')->paginate(8);
+//        $filter_cate_value = $cate_id;
+//        $filter_brand_value = $brand_id;
+        $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
+        $category = DB::table('tbl_category_product')->where('category_status','1')->orderBy('category_id','asc')->get();
+
+        return view('pages.sanpham.checkout',
+            compact(
+                'brand',
+                'category'));
+    }
 }

@@ -22,7 +22,9 @@ Route::post('/admin-dashboard',[AdminController::class,'dashboard']);
 
 //Tìm kiếm
 Route::post('/tim-kiem',[HomeController::class,'search']);
-
+//giỏ hàng
+Route::get('/gio-hang',[ProductController::class,'cart']);
+Route::get('/thanh-toan',[ProductController::class,'checkout']);
 
 //Sản phẩm client
 Route::get('/san-pham',[ProductController::class,'productPages_all']);
