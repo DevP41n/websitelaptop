@@ -35,11 +35,13 @@ class HomeController extends Controller
 
 		// $all_product = DB::table('tbl_product')->where('product_status','1')->orderby('product_id','desc')->paginate(3);
 
+        $Cart = Session('Cart') ? Session('Cart') : null;
 		return view('pages.home')
             ->with('category',$category)
             ->with('all_product',$all_product)
             ->with('brand',$brand)
             ->with('product_banner_newest',$product_banner_newest)
+            ->with('Cart', $Cart);
             ;
 	}
 	public function search(Request $request)
@@ -50,10 +52,12 @@ class HomeController extends Controller
 		// $brand_product = DB::table('tbl_brand')->where('brand_status','1')->orderby('brand_id','desc')->get();
         $brand = DB::table('tbl_brand')->where('brand_status','1')->orderBy('brand_id','asc')->get();
         $search_product = DB::table('tbl_product')->where('product_name', 'like', '%' . $keywords . '%')->get();
+        $Cart = Session('Cart') ? Session('Cart') : null;
 		return view('pages.sanpham.search')
             ->with('category', $cate_product)
             ->with('search_product', $search_product)
             ->with('brand', $brand)
-            ->with('keywords',$keywords);
+            ->with('keywords',$keywords)
+            ->with('Cart', $Cart);
 	}
 }

@@ -98,7 +98,7 @@
                                             <div class="cart-plus-minus"><input type="text" value="1" /></div>
                                         </div>
                                         <div class="product-add-cart  product-add-cart-2 mb-20">
-                                            <button class="s-btn s-btn-2 s-btn-big">Thêm vào giỏ</button>
+                                            <a type="button" href="{{url('/Add-Cart/'.$value->product_id)}}" class="s-btn s-btn-2 s-btn-big">Thêm vào giỏ</a>
                                         </div>
                                     </div>
                                 </form>

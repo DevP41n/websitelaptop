@@ -227,27 +227,31 @@ C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z"></path>
                     </div>
                     <div class="cartmini__list">
                         <ul>
-                            {{--item trong gio hang--}}
+                            @yield('cart')
+                            @if(Session::get('Cart')->product)
+                            @foreach(Session::get('Cart')->product as $item)
+                           <li class="cartmini__item p-rel d-flex align-items-start">
+                               <div class="cartmini__thumb mr-15">
+                                   <a href="product-details.html">
+                                       <img src="{{URL('public/uploads/products/'.$item['productInfo']->product_image)}}" alt="">
+                                   </a>
 
-{{--                            <li class="cartmini__item p-rel d-flex align-items-start">--}}
-{{--                                <div class="cartmini__thumb mr-15">--}}
-{{--                                    <a href="product-details.html">--}}
-{{--                                        <img src="resources/client/img/products/product-1.jpg" alt="">--}}
-{{--                                    </a>--}}
+                               </div>
+                               <div class="cartmini__content">
+                                   <h3 class="cartmini__title">
+                                       <a href="product-details.html">{{$item['productInfo']->product_name}}</a>
+                                   </h3>
+                                   <span class="cartmini__price">
+                                          <span class="price">{{$item['productInfo']->product_price}} VND</span>
+                                       </span>
+                               </div>
+                               <a href="#" class="cartmini__remove">
+                                   <i class="fal fa-times"></i>
+                               </a>
+                           </li>
 
-{{--                                </div>--}}
-{{--                                <div class="cartmini__content">--}}
-{{--                                    <h3 class="cartmini__title">--}}
-{{--                                        <a href="product-details.html">Sản phẩm 1</a>--}}
-{{--                                    </h3>--}}
-{{--                                    <span class="cartmini__price">--}}
-{{--                                            <span class="price">$70.00</span>--}}
-{{--                                        </span>--}}
-{{--                                </div>--}}
-{{--                                <a href="#" class="cartmini__remove">--}}
-{{--                                    <i class="fal fa-times"></i>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
+                           @endforeach
+                           @endif
 
                         </ul>
                     </div>

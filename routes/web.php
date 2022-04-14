@@ -5,9 +5,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\BrandProduct;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ContactController;
+use App\Models\Cart;
+
 //frontend
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/trang-chu','App\Http\Controllers\HomeController@index');
@@ -85,4 +88,7 @@ Route::get('/delete-contact/{contact_id}',[ContactController::class,'delete_cont
 
 Route::post('/save-contact',[ContactController::class,'save_contact']);
 Route::post('/update-contact/{contact_id}',[ContactController::class,'update_contact']);
+
+
+Route::get('/Add-Cart/{id}',[CartController::class,'AddCart']);
 

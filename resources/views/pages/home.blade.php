@@ -5,6 +5,11 @@
 
 
 @extends('layout')
+
+@section('cart')
+
+@endsection
+
 @section('content')
     <!-- slider area start -->
     <section class="slider-area-rel">
