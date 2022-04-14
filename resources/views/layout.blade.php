@@ -256,8 +256,8 @@ C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z"></path>
                         <span> VNĐ</span>
                     </div>
                     <div class="cartmini__bottom">
-                        <a href="cart" class="s-btn w-100 mb-20">Chi tiết giỏ hàng</a>
-                        <a href="checkout" class="s-btn s-btn-2 w-100">Thanh toán</a>
+                        <a href="gio-hang" class="s-btn w-100 mb-20">Chi tiết giỏ hàng</a>
+                        <a href="thanh-toan" class="s-btn s-btn-2 w-100">Thanh toán</a>
                     </div>
                 </div>
             </div>
